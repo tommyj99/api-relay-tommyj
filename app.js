@@ -17,29 +17,29 @@ app.use(limiter);
 app.use(cors());
 
 app.get("/", (req, res) => {
-  res.send("Why the fuck won't you work you bitch??!!");
+  res.send("Ready");
 });
 // Routes
-// app.get("/mynews/api/news", async (req, res) => {
-//   //try {
-//   let mainChoice = req.query.mainchoice;
-//   let secondaryChoice = req.query.secondarychoice;
-//   let date = req.query.date;
-//   let apikey = req.query.apiKey;
-//   let url = "";
+app.get("/mynews/api/news", async (req, res) => {
+  //try {
+  let mainChoice = req.query.mainchoice;
+  let secondaryChoice = req.query.secondarychoice;
+  let date = req.query.date;
+  let apikey = req.query.apiKey;
+  let url = "";
 
-//   if (mainChoice === "everything") {
-//     url = `https://newsapi.org/v2/everything?q=${secondaryChoice}&sortBy=relevency&language=en&from=${date}&apiKey=${apikey}`; // process.env.REACT_APP_NEWS_API_KEY2
-//   } else {
-//     url = `https://newsapi.org/v2/top-headlines?language=en&from=${date}&apiKey=${apikey}`; // process.env.REACT_APP_NEWS_API_KEY2
-//   }
+  if (mainChoice === "everything") {
+    url = `https://newsapi.org/v2/everything?q=${secondaryChoice}&sortBy=relevency&language=en&from=${date}&apiKey=${apikey}`; // process.env.REACT_APP_NEWS_API_KEY2
+  } else {
+    url = `https://newsapi.org/v2/top-headlines?language=en&from=${date}&apiKey=${apikey}`; // process.env.REACT_APP_NEWS_API_KEY2
+  }
 
-//   request(url, function (error, response, body) {
-//     if (!error && response.statusCode === 200) {
-//       res.send(body);
-//     }
-//   });
-// });
+  request(url, function (error, response, body) {
+    if (!error && response.statusCode === 200) {
+      res.send(body);
+    }
+  });
+});
 
 // To run: node app.js
 // This spins up our sever and generates logs for us to use.
