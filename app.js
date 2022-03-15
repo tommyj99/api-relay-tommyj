@@ -1,24 +1,20 @@
 const express = require("express"); // yes
 let request = require("request"); // yes
-// const fetch = require("node-fetch");
 const rateLimit = require("express-rate-limit");
 let cors = require("cors");
 const app = express(); // yes
 
 // Enable if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
 // see https://expressjs.com/en/guide/behind-proxies.html
+// app.set("trust proxy", 1);
 
-app.set("trust proxy", 1);
 const limiter = rateLimit({
   windowMs: 1000, // 1 second
-  max: 1, // limit each IP to 1 requests per windowMs
+  max: 1,
 });
 app.use(limiter);
 app.use(cors());
 
-app.get("/", (req, res) => {
-  res.send("Ready");
-});
 // Routes
 app.get("/mynews/api/news", async (req, res) => {
   //try {
@@ -33,7 +29,7 @@ app.get("/mynews/api/news", async (req, res) => {
   } else {
     url = `https://newsapi.org/v2/top-headlines?language=en&from=${date}&apiKey=${apikey}`; // process.env.REACT_APP_NEWS_API_KEY2
   }
-
+  console.log("url: ", url);
   request(url, function (error, response, body) {
     if (!error && response.statusCode === 200) {
       res.send(body);
@@ -41,11 +37,7 @@ app.get("/mynews/api/news", async (req, res) => {
   });
 });
 
-// To run: node app.js
-// This spins up our sever and generates logs for us to use.
-// Any console.log statements you use in node for debugging will show up in your
-// terminal, not in the browser console!
-const port = process.env.PORT || 8000;
+const port = 8000;
 app.listen(port, () =>
   console.log(`my api connector app listening on port ${port}!`)
 );
