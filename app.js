@@ -26,7 +26,6 @@ app.get("/api/news", async (req, res) => {
   let mainChoice = req.query.mainchoice;
   let secondaryChoice = req.query.secondarychoice;
   let date = req.query.date;
-  // let apikey = req.query.apiKey;
   let url = "";
 
   if (mainChoice === "everything") {
