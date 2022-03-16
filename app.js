@@ -20,7 +20,7 @@ app.use(cors());
 //   res.send("Ready");
 // });
 // Routes
-app.get("/mynews/api/news", async (req, res) => {
+app.get("/api/news", async (req, res) => {
   //try {
   console.log("backend");
   let mainChoice = req.query.mainchoice;
