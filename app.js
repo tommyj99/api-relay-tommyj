@@ -16,9 +16,6 @@ const limiter = rateLimit({
 app.use(limiter);
 app.use(cors());
 
-// app.get("/", (req, res) => {
-//   res.send("Ready Freddy");
-// });
 // Routes
 app.get("/api/news", async (req, res) => {
   //try {
@@ -32,7 +29,7 @@ app.get("/api/news", async (req, res) => {
   } else {
     url = `https://newsapi.org/v2/top-headlines?language=en&from=${date}&apiKey=${process.env.REACT_APP_NEWS_API_KEY2}`; // process.env.REACT_APP_NEWS_API_KEY2
   }
-  console.log("myUrl: ", url);
+
   request(url, function (error, response, body) {
     if (!error && response.statusCode === 200) {
       res.send(body);
